@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Gestión Operativa - CUUMX</title>
+
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="logo.png">
+    <meta name="theme-color" content="#1e3a5f">
     <style>
         * {
             margin: 0;
@@ -37,18 +41,12 @@
         }
 
         .loginBox img {
-    max-width: 280px;
-    width: 100%;
-    margin: 0 auto 30px auto; /* centra perfectamente */
-    display: block;
-    position: relative;
-    left: 8px; /* mueve el logo ligeramente a la derecha */
-}
-
-            
-            
-        
-            
+            max-width: 280px;
+            width: 100%;
+            margin: 0 auto 30px auto; /* centra perfectamente */
+            display: block;
+            position: relative;
+            left: 8px; /* mueve el logo ligeramente a la derecha */
         }
 
         .loginBox h2 {
@@ -205,7 +203,7 @@
         }
 
         .sectionContent.active {
-            max-height: 2000px;
+            max-height: 2000px; /* Adjust if needed */
         }
 
         .itemList {
@@ -316,7 +314,12 @@
         @media (max-width: 768px) {
             header, .searchBar, .container, .legend {
                 padding: 15px 20px;
+                margin-left: 20px; /* Adjust margin for smaller screens */
+                margin-right: 20px;
             }
+             .searchBar {
+                margin: 20px; /* Adjust search bar margin */
+             }
 
             .logoSection h1 {
                 font-size: 18px;
@@ -337,6 +340,7 @@
     <script>
         function login() {
             const password = document.getElementById('passwordInput').value;
+            // IMPORTANT SECURITY NOTE: This password is visible in the source code.
             if (password === 'Hampton2025') {
                 document.getElementById('loginScreen').style.display = 'none';
                 document.getElementById('mainContent').style.display = 'block';
@@ -361,7 +365,7 @@
                 indicator.classList.add('red');
             } else if (indicator.classList.contains('red')) {
                 indicator.classList.remove('red');
-            } else {
+            } else { // If no class, start with green
                 indicator.classList.add('green');
             }
         }
@@ -369,7 +373,7 @@
         function searchItems() {
             const searchText = document.getElementById('searchInput').value.toLowerCase();
             const items = document.querySelectorAll('.item');
-            
+
             items.forEach(item => {
                 const itemName = item.getAttribute('data-name').toLowerCase();
                 if (itemName.includes(searchText)) {
@@ -380,9 +384,10 @@
             });
         }
     </script>
+
     <div id="loginScreen">
         <div class="loginBox">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRclPM9n1WmGtPrOtd2-MR6TsIOqIgbRbhX2Q&s" alt="Hampton Inn Logo">
+            <img src="logo.png" alt="Hampton Inn Logo">
             <h2>Sistema de Gestión Operativa</h2>
             <input type="password" id="passwordInput" placeholder="Ingrese contraseña" onkeypress="if(event.key==='Enter') login()">
             <button onclick="login()">Acceder</button>
@@ -393,7 +398,7 @@
     <div id="mainContent">
         <header>
             <div class="logoSection">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRclPM9n1WmGtPrOtd2-MR6TsIOqIgbRbhX2Q&s" alt="Hampton Inn Logo">
+                <img src="logo.png" alt="Hampton Inn Logo">
                 <h1>Sistema de Gestión Operativa - CUUMX</h1>
             </div>
             <div class="headerInfo">
@@ -416,7 +421,6 @@
         </div>
 
         <div class="container">
-            <!-- OPERACIONES -->
             <div class="section">
                 <div class="sectionHeader" onclick="toggleSection(this)">
                     <h2>📋 OPERACIONES</h2>
@@ -488,7 +492,6 @@
                 </div>
             </div>
 
-            <!-- FRONT DESK -->
             <div class="section">
                 <div class="sectionHeader" onclick="toggleSection(this)">
                     <h2>🏨 FRONT DESK</h2>
@@ -536,7 +539,6 @@
                 </div>
             </div>
 
-            <!-- ALIMENTOS Y BEBIDAS -->
             <div class="section">
                 <div class="sectionHeader" onclick="toggleSection(this)">
                     <h2>🍽️ ALIMENTOS Y BEBIDAS</h2>
@@ -544,107 +546,10 @@
                 </div>
                 <div class="sectionContent">
                     <div class="itemList">
-                        <div class="item" data-name="Costeo de recetas / menu / kit de banquetes">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-1</span>
-                            <span class="itemName">Costeo de recetas / menu / kit de banquetes</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
                         </div>
-                        <div class="item" data-name="Estados de menu restaurante, IRD, Banquetes">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-2</span>
-                            <span class="itemName">Estados de menu restaurante, IRD, Banquetes</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Lista de precios AyB">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-3</span>
-                            <span class="itemName">Lista de precios AyB</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Costo Actual de AyB, YTD vs presupuesto">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-4</span>
-                            <span class="itemName">Costo Actual de AyB, YTD vs presupuesto</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Costeo de recetas / menu / kit de banquetes">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-5</span>
-                            <span class="itemName">Costeo de recetas / menu / kit de banquetes</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Estados de menu restaurante, IRD, Banquetes">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-6</span>
-                            <span class="itemName">Estados de menu restaurante, IRD, Banquetes</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Inventarios loza, plaque, cristaleria, manteleria. Comparar vs par stock">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-7</span>
-                            <span class="itemName">Inventarios loza, plaque, cristaleria, manteleria. Comparar vs par stock</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Inventarios activos fijos, mesas de banquetes, sillas de banquetes, etc">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-8</span>
-                            <span class="itemName">Inventarios activos fijos, mesas de banquetes, sillas de banquetes, etc.</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Inventario de alimentos y bebidas perecederos">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-9</span>
-                            <span class="itemName">Inventario de alimentos y bebidas perecederos.</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Máquinas lavaloza">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-10</span>
-                            <span class="itemName">Máquinas lavaloza</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Inventario equipo mayor de cocina">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-11</span>
-                            <span class="itemName">Inventario equipo mayor de cocina</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Inventario equipo menor de cocina">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-12</span>
-                            <span class="itemName">Inventario equipo menor de cocina</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Inventarios loza, plaque, cristaleria, manteleria. Comparar vs par stock">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-13</span>
-                            <span class="itemName">Inventarios loza, plaque, cristaleria, manteleria. Comparar vs par stock</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Inventarios activos fijos, mesas de banquetes, sillas de banquetes, etc">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-14</span>
-                            <span class="itemName">Inventarios activos fijos, mesas de banquetes, sillas de banquetes, etc.</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Inventario de alimentos y bebidas perecederos">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-15</span>
-                            <span class="itemName">Inventario de alimentos y bebidas perecederos.</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Máquinas lavaloza">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">AB-1-16</span>
-                            <span class="itemName">Máquinas lavaloza</span>
-                            <a href="https://drive.google.com/drive/folders/1nQVzunJsSCyr_eArTG_igwpvEPMUrLQE" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <!-- LEGAL OPERATIVA / LABORAL -->
             <div class="section">
                 <div class="sectionHeader" onclick="toggleSection(this)">
                     <h2>⚖️ LEGAL OPERATIVA / LABORAL</h2>
@@ -652,179 +557,10 @@
                 </div>
                 <div class="sectionContent">
                     <div class="itemList">
-                        <div class="item" data-name="Licencia de Funcionamiento Municipal / Estatal">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-1</span>
-                            <span class="itemName">Licencia de Funcionamiento Municipal / Estatal</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
                         </div>
-                        <div class="item" data-name="Licencia Estatal de Alcoholes">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-2</span>
-                            <span class="itemName">Licencia Estatal de Alcoholes</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Dictamen estructural">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-3</span>
-                            <span class="itemName">Dictamen estructural</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Dictamen de gas">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-4</span>
-                            <span class="itemName">Dictamen de gas</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Dictamen electrico">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-5</span>
-                            <span class="itemName">Dictamen electrico</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Programa Interno de Protección Civil">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-6</span>
-                            <span class="itemName">Programa Interno de Protección Civil</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Anuencia de Alcoholes, Municipal">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-7</span>
-                            <span class="itemName">Anuencia de Alcoholes, Municipal</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Aviso de Funcionamiento (COFEPRIS) Secretaria de Salud">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-8</span>
-                            <span class="itemName">Aviso de Funcionamiento (COFEPRIS) Secretaria de Salud.</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Licencia de Uso de Suelo">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-9</span>
-                            <span class="itemName">Licencia de Uso de Suelo</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Licencia para Anuncios Exteriores">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-10</span>
-                            <span class="itemName">Licencia para Anuncios Exteriores</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Licencia de Construcción">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-11</span>
-                            <span class="itemName">Licencia de Construcción</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Terminación de Obra">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-12</span>
-                            <span class="itemName">Terminación de Obra</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Alineamiento y Número Oficial">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-13</span>
-                            <span class="itemName">Alineamiento y Número Oficial</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Inscripción al Sistema Empresarial Mexicano (SIEM)">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-14</span>
-                            <span class="itemName">Inscripción al Sistema Empresarial Mexicano (SIEM)</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Registro y Permiso de Descargas de Aguas Residuales">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-15</span>
-                            <span class="itemName">Registro y Permiso de Descargas de Aguas Residuales</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Autorización de Uso y Operación de Calderas y/o Equipos Sujetos a Presión">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-16</span>
-                            <span class="itemName">Autorización de Uso y Operación de Calderas y/o Equipos Sujetos a Presión</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Cedula de Operación Anual (COA)">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-17</span>
-                            <span class="itemName">Cedula de Operación Anual (COA)</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Registro Nacional de Turismo (RNT)">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-18</span>
-                            <span class="itemName">Registro Nacional de Turismo (RNT)</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Manifestación de Impacto Ambiental (MIA)">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-19</span>
-                            <span class="itemName">Manifestación de Impacto Ambiental (MIA)</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Registro como Generador de Residuos de Manejo Especial (Residuos Solidos Urbanos)">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-20</span>
-                            <span class="itemName">Registro como Generador de Residuos de Manejo Especial (Residuos Solidos Urbanos)</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Permiso de Bifenilos policrorados">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-21</span>
-                            <span class="itemName">Permiso de Bifenilos policrorados</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Registro como Generador de Residuos Peligrosos">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-22</span>
-                            <span class="itemName">Registro como Generador de Residuos Peligrosos</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Licencia de Generador de Emisiones a la Atmósfera">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-23</span>
-                            <span class="itemName">Licencia de Generador de Emisiones a la Atmósfera</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Verificación de Aforo">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-24</span>
-                            <span class="itemName">Verificación de Aforo</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Contratos de Adhesión PROFECO Profeco Lavanderia, Tintoreria y Eventos Sociales">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-25</span>
-                            <span class="itemName">Contratos de Adhesión PROFECO Profeco Lavanderia, Tintoreria y Eventos Sociales</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Estatus de Litigios Laborales">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-26</span>
-                            <span class="itemName">Estatus de Litigios Laborales</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Estatus de Inspecciones y/ó Procedimientos Administrativos">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-27</span>
-                            <span class="itemName">Estatus de Inspecciones y/ó Procedimientos Administrativos</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Contingencias / Reclamaciones">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">L-1-28</span>
-                            <span class="itemName">Contingencias / Reclamaciones</span>
-                            <a href="https://drive.google.com/drive/folders/1vZjMVZYGK-ie2j3s4ybAZH2jEcFPDOXF" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <!-- ADMINISTRACIÓN -->
             <div class="section">
                 <div class="sectionHeader" onclick="toggleSection(this)">
                     <h2>💼 ADMINISTRACIÓN</h2>
@@ -832,338 +568,30 @@
                 </div>
                 <div class="sectionContent">
                     <div class="itemList">
-                        <!-- Créditos y Cobranza -->
-                        <div class="item" data-name="Integracion de saldos por cobrar por estratas de vencimiento">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-1-1</span>
-                            <span class="itemName">Integracion de saldos por cobrar por estratas de vencimiento</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
                         </div>
-                        <div class="item" data-name="Listado de clientes debidamente enlistado con el ID SAP, con monto credito autorizado, plazo negociado">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-1-2</span>
-                            <span class="itemName">Listado de clientes debidamente enlistado con el ID SAP, con monto credito autorizado, plazo negociado, convenios elaborados, contactos de cobranza con nombre completo, posicion, correo, telefono empresa y celular</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Listado de cuentas referenciadas para cobros de factura">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-1-3</span>
-                            <span class="itemName">Listado de cuentas referenciadas para cobros de factura</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <!-- Abastecimientos -->
-                        <div class="item" data-name="Integracion de saldos por pagar estatus de vencimiento">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-2-1</span>
-                            <span class="itemName">Integracion de saldos por pagar estatus de vencimiento</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Listado de proveedores debidamente enlistado con el ID SAP con o sin credito monto del credito">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-2-2</span>
-                            <span class="itemName">Listado de proveedores debidamente enlistado con el ID SAP con o sin credito monto del credito, plazo de credito, convenios o contatos elaborados, contactos de pagos con nombre completo, posicion, correo, telefono empresa y celular</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="File electronico y fisico de los proveedores vigentes debidamente codificado con ID SAP">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-2-3</span>
-                            <span class="itemName">File electronico y fisico de los proveedores vigentes debidamente codificado con ID SAP</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <!-- Contraloría -->
-                        <div class="item" data-name="Fondos de caja chica recepción y restaurante (arqueos, documentación soporte)">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-1</span>
-                            <span class="itemName">Fondos de caja chica recepción y restaurante (arqueos, documentación soporte)</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Saldos de efectivos pendientes por depositar">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-2</span>
-                            <span class="itemName">Saldos de efectivos pendientes por depositar</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Conciliaciones Bancarias y soporte de partidas en transito">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-3</span>
-                            <span class="itemName">Conciliaciones Bancarias y soporte de partidas en transito</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Reserva de incobrables">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-4</span>
-                            <span class="itemName">Reserva de incobrables</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración saldo huespedes y amarre vs PMS">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-5</span>
-                            <span class="itemName">Integración saldo huespedes y amarre vs PMS</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración saldos lotes tarjetas de credito VISA/MC">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-6</span>
-                            <span class="itemName">Integración saldos lotes tarjetas de credito VISA/MC</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración saldos lotes tarjetas de credito Amexco">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-7</span>
-                            <span class="itemName">Integración saldos lotes tarjetas de credito Amexco</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración de saldos de deudores diversos (Zatlas TC, entre otros)">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-8</span>
-                            <span class="itemName">Integración de saldos de deudores diversos (Zatlas TC, entre otros)</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración de saldos de responsabilidades empleados">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-9</span>
-                            <span class="itemName">Integración de saldos de responsabilidades empleados</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración de prestamos a empleados">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-10</span>
-                            <span class="itemName">Integración de prestamos a empleados</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración de anticipos a proveedores">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-11</span>
-                            <span class="itemName">Integración de anticipos a proveedores</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración de cuentas de IVA acreditable / trasladado; Retenciones IVA-ISR">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-12</span>
-                            <span class="itemName">Integración de cuentas de IVA acreditable / trasladado; Retenciones IVA-ISR</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración de saldos por pagos anticipados">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-13</span>
-                            <span class="itemName">Integración de saldos por pagos anticipados</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración de depositos en garantia">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-14</span>
-                            <span class="itemName">Integración de depositos en garantia</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración de cartera de proveedores nacionales y extranjeros (PDF y XML)">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-15</span>
-                            <span class="itemName">Integración de cartera de proveedores nacionales y extranjeros (PDF y XML)</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración de saldos intercompañía CXC y CXP (soportes)">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-16</span>
-                            <span class="itemName">Integración de saldos intercompañía CXC y CXP (soportes)</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Saldos pendientes por pagar a la franquicia">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-17</span>
-                            <span class="itemName">Saldos pendientes por pagar a la franquicia</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración de saldos de provisiones de gastos">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-18</span>
-                            <span class="itemName">Integración de saldos de provisiones de gastos</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Saldos de propinas pendientes por pagar">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-19</span>
-                            <span class="itemName">Saldos de propinas pendientes por pagar</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Saldos de anticipos de clientes de reservas futuras">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-20</span>
-                            <span class="itemName">Saldos de anticipos de clientes de reservas futuras</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración de saldos pendientes por reembolsar a huespedes">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-21</span>
-                            <span class="itemName">Integración de saldos pendientes por reembolsar a huespedes</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración saldo pte por pagar del Impuesto sobre hospedaje (información del portal y datos para realizar los pagos)">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-22</span>
-                            <span class="itemName">Integración saldo pte por pagar del Impuesto sobre hospedaje (información del portal y datos para realizar los pagos)</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Amarre de ingresos contables vs reportes de PMS por los ultimos 5 años">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-23</span>
-                            <span class="itemName">Amarre de ingresos contables vs reportes de PMS por los ultimos 5 años</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Amarre de ingresos contables con el total facturas en SAT por los ultimos 5 años">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-24</span>
-                            <span class="itemName">Amarre de ingresos contables con el total facturas en SAT por los ultimos 5 años</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integración de los gastos que no cumplen con requisitos SAT- REPSE acumulado por los ultimos 5 años">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-25</span>
-                            <span class="itemName">Integración de los gastos que no cumplen con requisitos SAT- REPSE acumulado por los ultimos 5 años</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Copia de la contabilidad por los ultimos 5 años y repositorio">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-26</span>
-                            <span class="itemName">Copia de la contabilidad por los ultimos 5 años y repositorio.</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Integracion de contratos de Equipos en comodato">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-27</span>
-                            <span class="itemName">Integracion de contratos de Equipos en comodato</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Factura fisica de todos los activos de vehiculos y otros activos importantes">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-28</span>
-                            <span class="itemName">Factura fisica de todos los activos de vehiculos y otros activos importantes</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Lista de contratos servicios :CFE,Gas,Agua,seguridad, cable, telefono, transporte de valores, etc">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-29</span>
-                            <span class="itemName">Lista de contratos servicios :CFE,Gas,Agua,seguridad, cable, telefono, transporte de valores, etc</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Claves o accesos para los portales de recibos agua, luz , internet, cable, etc">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-30</span>
-                            <span class="itemName">Claves o accesos para los portales de recibos agua, luz , internet, cable, etc</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Matriz de roles y perfiles en Opera y Symphony">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">A-3-31</span>
-                            <span class="itemName">Matriz de roles y perfiles en Opera y Symphony</span>
-                            <a href="https://drive.google.com/drive/folders/1fvPod9euwjg7s3lHYulhdwhljGtXbYwu" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                    </div>
                 </div>
             </div>
 
-            <!-- AMA DE LLAVES -->
-            <div class="section">
+             <div class="section">
                 <div class="sectionHeader" onclick="toggleSection(this)">
                     <h2>🧹 AMA DE LLAVES</h2>
                     <span class="arrow">▼</span>
                 </div>
                 <div class="sectionContent">
                     <div class="itemList">
-                        <div class="item" data-name="Bitácoras de limpiezas profundas de habitaciones y áreas públicas">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">O-3-1</span>
-                            <span class="itemName">Bitácoras de limpiezas profundas de habitaciones y áreas públicas</span>
-                            <a href="https://drive.google.com/drive/folders/12VCk4sXGW3XYBHUSPRSu7aCLS0pbg9xT" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Calendario anual de limpiezas profundas de habitaciones y áreas públicas">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">O-3-2</span>
-                            <span class="itemName">Calendario anual de limpiezas profundas de habitaciones y áreas públicas</span>
-                            <a href="https://drive.google.com/drive/folders/1E-ZuajBRzJBUUvY-ClslgAtlhisq9y5W" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Inventario de blancos y equipamiento menor de habitaciones">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">O-3-3</span>
-                            <span class="itemName">Inventario de blancos y equipamiento menor de habitaciones</span>
-                            <a href="https://drive.google.com/drive/folders/1EJPU_BKZ4oRbZQe6rFeeqcWYHK1ENExz" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Inventario de equipamiento menor de habitaciones">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">O-3-5</span>
-                            <span class="itemName">Inventario de equipamiento menor de habitaciones</span>
-                            <a href="https://drive.google.com/drive/folders/1k4f9jzmj7CNtjpsJQM3x6bMNAlP5t1KJ" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Inventario de suministros de habitaciones y de limpieza general">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">O-3-6</span>
-                            <span class="itemName">Inventario de suministros de habitaciones y de limpieza general</span>
-                            <a href="https://drive.google.com/drive/folders/1Lkb4peSipp7Rse-6qNZr6fO0PxslqA3H" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Carpeta de Lost & Found e inventario de articulos">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">O-3-7</span>
-                            <span class="itemName">Carpeta de Lost & Found e inventario de articulos</span>
-                            <a href="https://drive.google.com/drive/folders/1DPKjByq_FQgOMDtRlm_ohNIP31oRHMoo" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                    </div>
+                         </div>
                 </div>
             </div>
 
-            <!-- MANTENIMIENTOS Y SEGURIDAD -->
-            <div class="section">
+             <div class="section">
                 <div class="sectionHeader" onclick="toggleSection(this)">
                     <h2>🔧 MANTENIMIENTOS Y SEGURIDAD</h2>
                     <span class="arrow">▼</span>
                 </div>
                 <div class="sectionContent">
                     <div class="itemList">
-                        <div class="item" data-name="Bitácoras generales de mantenimientos preventivos del hotel (habitaciones y equipos)">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">O-4-1</span>
-                            <span class="itemName">Bitácoras generales de mantenimientos preventivos del hotel (habitaciones y equipos)</span>
-                            <a href="https://drive.google.com/drive/folders/1T5K2PaAkWYiSilXyC60fw3gboQD9CMgN" target="_blank" class="itemLink">Abrir</a>
                         </div>
-                        <div class="item" data-name="Calendario de mantenimientos preventivos de habitaciones y equipos mayores y menores">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">O-4-2</span>
-                            <span class="itemName">Calendario de mantenimientos preventivos de habitaciones y equipos mayores y menores</span>
-                            <a href="https://drive.google.com/drive/folders/1lhod0kMSGdol3iv7lOPkbd0aHnQ8qcAL" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Pólizas de mantenimiento vigentes">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">O-4-3</span>
-                            <span class="itemName">Pólizas de mantenimiento vigentes</span>
-                            <a href="https://drive.google.com/drive/folders/1fE5X0troOMJNk936Vz7PTFAXgcAsPFZN" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Reportes de pruebas anuales, semestrales de los equipos que lo requieran">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">O-4-4</span>
-                            <span class="itemName">Reportes de pruebas anuales, semestrales de los equipos que lo requieran</span>
-                            <a href="https://drive.google.com/drive/folders/1Ib6UGRRN4-ulkmIWA7uUmx-1oDc67kCs" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Inventarios de herramientas y materiales de trabajo">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">O-4-5</span>
-                            <span class="itemName">Inventarios de herramientas y materiales de trabajo</span>
-                            <a href="https://drive.google.com/drive/folders/1ShIquXDkS6XBnhrr0VdIjhxh7jCshQTZ" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Inventarios de equipos menores y mayores">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">O-4-6</span>
-                            <span class="itemName">Inventarios de equipos menores y mayores</span>
-                            <a href="https://drive.google.com/drive/folders/1NgOwIEFkdpu6OJQ7G4Lvijscv1N6r9nt" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Programa de ahorro de energéticos">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">O-4-7</span>
-                            <span class="itemName">Programa de ahorro de energéticos</span>
-                            <a href="https://drive.google.com/drive/folders/1Xka-ICHShwPE3EQcVXRk8CrO5C-rGXB1" target="_blank" class="itemLink">Abrir</a>
-                        </div>
-                        <div class="item" data-name="Bitacora de limpieza inmueble y fumigaciones">
-                            <div class="statusIndicator" onclick="cycleStatus(this)"></div>
-                            <span class="itemCode">O-4-8</span>
-                            <span class="itemName">Bitacora de limpieza inmueble y fumigaciones</span>
-                             <a href="https://drive.google.com/drive/folders/1jhCGFZT1vw1AaO71dXY_86rnNVmNGgHn" target="_blank" class="itemLink">Abrir</a>                                                                       
-                        </div>
-
-
+                </div>
+            </div>
+            </div> </div> </body>
+</html>
